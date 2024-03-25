@@ -12,18 +12,22 @@ import {
   Keyboard,
   Pressable
 } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
 import Logo from '../../assets/Logo.png'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
 import CheckBox from '../components/Checkbox'
+import { GlobalContext } from '../contexts'
 
 const Home = ({ navigation }) => {
   const { height } = useWindowDimensions()
 
+  const { id } = useContext(GlobalContext)
+
   const Register = () => {
-    navigation.navigate('Login')
+  
+    navigation.navigate('Welcome')
   }
   const [Tview, setTview] = useState(true)
 

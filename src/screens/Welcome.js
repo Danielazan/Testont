@@ -13,7 +13,7 @@ import {
   Pressable,
   ScrollViewComponent
 } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
 import { FlashList } from '@shopify/flash-list'
 import Logo from '../../assets/Logo.png'
@@ -21,10 +21,16 @@ import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
 import One from '../../assets/HimgOne.png'
 import Two from '../../assets/HImgt.png'
+import { GlobalContext } from '../contexts'
 
 const Welcome = ({ navigation }) => {
   const { height } = useWindowDimensions()
 
+  const { id } = useContext(GlobalContext)
+
+  const login = ()=>{
+    navigation.navigate("Login")
+  }
   const rooms = () => {
     navigation.navigate('ChartRoom')
   }
@@ -85,28 +91,30 @@ const Welcome = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <LinearGradient
-        colors={['#fcefc3', '#d9e5d1']}
-        style={styles.background}
-      />
+    <View style={{ flex: 1 }}>
+      {id ? (
+        <View style={styles.container}>
+          <LinearGradient
+            colors={['#fcefc3', '#d9e5d1']}
+            style={styles.background}
+          />
 
-      <Image
-        source={Logo}
-        style={[styles.logo, { height: height * 0.2 }]}
-        resizeMode='contain'
-      />
+          <Image
+            source={Logo}
+            style={[styles.logo, { height: height * 0.2 }]}
+            resizeMode='contain'
+          />
 
-      <View style={styles.flash}>
-        <FlashList
-          data={DATA}
-          renderItem={renderItem}
-          estimatedItemSize={200}
-          numColumns={3}
-        />
-      </View>
+          <View style={styles.flash}>
+            <FlashList
+              data={DATA}
+              renderItem={renderItem}
+              estimatedItemSize={200}
+              numColumns={3}
+            />
+          </View>
 
-      {/* <View style={styles.flash2}>
+          {/* <View style={styles.flash2}>
         <FlashList
           data={imgdats}
           renderItem={renderItem2}
@@ -116,21 +124,67 @@ const Welcome = ({ navigation }) => {
         />
       </View> */}
 
-      <View
-        style={{
-          flex: 1,
-          width: '100%',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginLeft: '10%'
-        }}
-      >
-        <ScrollView style={{ flex: 1, width: '100%' }}>
-          <Image source={One} style={[styles.imgone]} resizeMode='stretch' />
+          <View
+            style={{
+              flex: 1,
+              width: '100%',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginLeft: '10%'
+            }}
+          >
+            <ScrollView style={{ flex: 1, width: '100%' }}>
+              <Image
+                source={One}
+                style={[styles.imgone]}
+                resizeMode='stretch'
+              />
 
-          <Image source={Two} style={[styles.imgone]} resizeMode='stretch' />
-        </ScrollView>
-      </View>
+              <Image
+                source={Two}
+                style={[styles.imgone]}
+                resizeMode='stretch'
+              />
+            </ScrollView>
+          </View>
+        </View>
+      ) : (
+        <View
+          style={{ flex: 1, alignItems: 'center' }}
+        >
+          <LinearGradient
+            colors={['#fcefc3', '#d9e5d1']}
+            style={styles.background}
+          />
+
+          <Image
+            source={Logo}
+            style={[styles.logo, { height: height * 0.4 }]}
+            resizeMode='contain'
+          />
+
+          <Text style={{ fontSize: 18, fontWeight: 200, color: 'red' }}>
+            {' '}
+            Please go back and Login{' '}
+          </Text>
+          <CustomButton
+            borderR={30}
+            width='80%'
+            color='black'
+            padding={10}
+            height={50}
+            text='Login'
+            fontsize={14}
+            textcolor='white'
+            // zndText={item.znd}
+            items='center'
+            textcolorz='#e7e9bc'
+            margin={5}
+            weight={500}
+            onPress={login}
+          />
+        </View>
+      )}
     </View>
   )
 }

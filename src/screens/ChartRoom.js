@@ -122,13 +122,16 @@ const ChartRoom = ({ navigation }) => {
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              width: '50%'
+              width: '50%',
+              gap:5,
+              marginLeft:7
               //   backgroundColor: 'blue'
             }}
           >
             <TouchableOpacity>
               <Entypo name='arrow-with-circle-left' size={24} color='white' />
             </TouchableOpacity>
+
             <Text style={{ fontSize: 20 }}>OnTime Profo</Text>
           </View>
 
@@ -145,7 +148,7 @@ const ChartRoom = ({ navigation }) => {
             </View>
 
             <TouchableOpacity>
-              <Entypo name='dots-three-vertical' size={24} color='white' />
+              <Entypo name='dots-three-vertical' size={24} color='#07fe00' />
             </TouchableOpacity>
           </View>
         </View>
@@ -154,31 +157,37 @@ const ChartRoom = ({ navigation }) => {
           <CustomButton
             text='Conversation'
             height={40}
-            width={90}
-            color='black'
-            textcolor='white'
+            width={100}
+            color='#5a5e5a'
+            borderR={5}
+            textcolor='#fcf988'
             padding={2}
             items='center'
+            weight={800}
           />
 
           <CustomButton
             text='Find'
             height={40}
             width={90}
-            color='black'
-            textcolor='white'
+            color='#5a5e5a'
+            borderR={5}
+            textcolor='#fcf988'
             padding={2}
             items='center'
+            weight={800}
           />
 
           <CustomButton
             text='Book an appointment'
             height={40}
             width={160}
-            color='black'
-            textcolor='white'
+            color='#5a5e5a'
+            borderR={5}
+            textcolor='#fcf988'
             padding={2}
             items='center'
+            weight={800}
           />
         </View>
       </View>

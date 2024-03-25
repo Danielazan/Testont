@@ -12,16 +12,24 @@ import {
   Keyboard,
   Pressable
 } from 'react-native'
-import React from 'react'
+import React,{useContext,useState} from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
 import Logo from '../../assets/Logo.png'
 import CustomInput from '../components/CustomInput'
 import CustomButton from '../components/CustomButton'
+import { GlobalContext } from '../contexts'
 
 const Login = ({ navigation }) => {
   const { height } = useWindowDimensions()
 
+  const {id, setId} = useContext(GlobalContext)
+
+  const [PassWord, setPassWord] = useState("")
+
   const Login = () => {
+    
+    setId(PassWord)
+    console.log(id)
     navigation.navigate('Welcome')
   }
   const signUp = () => {
@@ -63,7 +71,7 @@ const Login = ({ navigation }) => {
           <CustomInput
             Radius={10}
             Background='white'
-            placeholder='Frist Name'
+            placeholder='User Name'
             width='80%'
             height='32%'
             Hpadding='2%'
@@ -77,7 +85,9 @@ const Login = ({ navigation }) => {
           <CustomInput
             Radius={10}
             Background='white'
-            placeholder='Middle Name'
+            placeholder='PassWord'
+            value={PassWord}
+            setvalue={setPassWord}
             width='80%'
             height='32%'
             Hpadding='2%'
